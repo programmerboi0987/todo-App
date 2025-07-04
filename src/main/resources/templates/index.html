@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="container">
+    <h1>ToDo List</h1>
+
+    <form th:action="@{/add}" method="post">
+        <input type="text" name="name" placeholder="Enter task..." required />
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul>
+        <li th:each="task : ${tasks}">
+            <span th:text="${task.name}"></span>
+            <a th:href="@{/delete/{id}(id=${task.id})}" class="delete-btn">Delete</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
